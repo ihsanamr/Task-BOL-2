@@ -173,19 +173,19 @@ int main() {
         switch (pilihan) {
             case 1:
                 printf("Masukkan nama barang: ");
-                scanf(" %[^\n]", nama);
+                scanf(" %[^\n]", nama); getchar();
                 stok = inputInt("Masukkan stok: ");
                 harga = inputFloat("Masukkan harga per barang: ");
                 head = tambahBarang(head, nama, stok, harga);
                 break;
             case 2:
                 printf("Masukkan nama barang yang akan dihapus: ");
-                scanf(" %[^\n]", nama);
+                scanf(" %[^\n]", nama); getchar();
                 head = hapusBarang(head, nama);
                 break;
             case 3:
                 printf("Masukkan nama barang yang akan diupdate: ");
-                scanf(" %[^\n]", nama);
+                scanf(" %[^\n]", nama); getchar();
                 stok = inputInt("Masukkan stok baru: ");
                 harga = inputFloat("Masukkan harga baru: ");
                 head = updateBarang(head, nama, stok, harga);
@@ -195,7 +195,7 @@ int main() {
                 break;
             case 5:
                 printf("Masukkan nama barang yang dicari: ");
-                scanf(" %[^\n]", nama);
+                scanf(" %[^\n]", nama); getchar();
                 cariBarang(head, nama);
                 break;
             case 6:
@@ -214,4 +214,3 @@ int main() {
 
     return 0;
 }
-
