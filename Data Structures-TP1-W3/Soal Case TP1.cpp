@@ -259,7 +259,7 @@ int main() {
             if (strlen(pilihanStr) != 1) {
                 printf("\n----------------------------------\n");
                 printf("Pilihan tidak valid. Masukkan angka.\n");
-                printf("----------------------------------\n");
+                printf("----------------------------------\n\n");
             } else {
                 pilihan = atoi(pilihanStr); // Konversi string ke integer
                 if (pilihan < 1 || pilihan > 5) {
