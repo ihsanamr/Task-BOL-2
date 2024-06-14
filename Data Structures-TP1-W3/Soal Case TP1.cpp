@@ -251,26 +251,26 @@ int main() {
         tampilkanMenu();
         
         do {
-		    printf("Masukkan pilihan: ");
-		    scanf("%1s", pilihanStr);
-		    getchar();
-		
-		    // Validasi panjang string
-		    if (strlen(pilihanStr) != 1) {
-		        printf("\n----------------------------------\n");
-		        printf("Pilihan tidak valid. Masukkan angka.\n");
-		        printf("----------------------------------\n");
-		    } else {
-		        pilihan = atoi(pilihanStr); // Konversi string ke integer
-		        if (pilihan < 1 || pilihan > 5) {
-		            printf("\n--------------------------------------\n");
-		            printf("Pilihan tidak valid. Harus antara 1-5.\n");
-		            printf("--------------------------------------\n\n");
-		        }
-		    }
-		} while (strlen(pilihanStr) != 1 || (pilihan < 1 || pilihan > 5));
-		
-		printf("===============================\n\n");
+            printf("Masukkan pilihan: ");
+            scanf(" %[^\n]", pilihanStr);
+            getchar();
+
+            // Validasi panjang string
+            if (strlen(pilihanStr) != 1) {
+                printf("\n----------------------------------\n");
+                printf("Pilihan tidak valid. Masukkan angka.\n");
+                printf("----------------------------------\n");
+            } else {
+                pilihan = atoi(pilihanStr); // Konversi string ke integer
+                if (pilihan < 1 || pilihan > 5) {
+                    printf("\n--------------------------------------\n");
+                    printf("Pilihan tidak valid. Harus antara 1-5.\n");
+                    printf("--------------------------------------\n\n");
+                }
+            }
+        } while (strlen(pilihanStr) != 1 || (pilihan < 1 || pilihan > 5));
+
+        printf("===============================\n\n");
 
         switch (pilihan) {
             case 1:
@@ -281,62 +281,61 @@ int main() {
                         getchar();
                         if (!isNum(employeeIDStr) || strlen(employeeIDStr) > 5) {
                             printf("\n---------------------------------------------------------------------\n");
-							printf("Employee ID tidak valid. Tolong input ID yang sesuai (maks. 5 angka).\n");
-							printf("---------------------------------------------------------------------\n\n");
+                            printf("Employee ID tidak valid. Tolong input ID yang sesuai (maks. 5 angka).\n");
+                            printf("---------------------------------------------------------------------\n\n");
                         }
                     } while (!isNum(employeeIDStr) || strlen(employeeIDStr) > 5);
                     employeeID = atoi(employeeIDStr);  // Konversi string ke integer
-                    
-                    do {
-					    printf("Masukkan Nama Lengkap (maks. 30 karakter): ");
-					    scanf(" %[^\n]", namaLengkap);
-					    getchar();
-					
-					    // Validasi Nama Lengkap
-					    if (!isAlphaSpace(namaLengkap) || strlen(namaLengkap) > 30) {
-					    	printf("\n-----------------------------------------------------------------------------------\n");
-					        printf("Nama Lengkap tidak valid. Harus berisi hanya huruf dan spasi, maksimal 30 karakter.\n");
-					        printf("-----------------------------------------------------------------------------------\n\n");
-					    }
-					} while (!isAlphaSpace(namaLengkap) || strlen(namaLengkap) > 30);
-
-			
-					do {
-					    printf("Masukkan Tempat Lahir (maks. 30 karakter): ");
-					    scanf(" %[^\n]", tempatLahir);
-					    getchar();
-					
-					    // Validasi Tempat Lahir
-					    if (!isAlphaSpace(tempatLahir) || strlen(tempatLahir) > 30) {
-					        printf("\n-----------------------------------------------------------------------------------\n");
-					        printf("Tempat Lahir tidak valid. Harus berisi hanya huruf dan spasi, maksimal 30 karakter.\n");
-					        printf("-----------------------------------------------------------------------------------\n\n");
-					    }
-					} while (!isAlphaSpace(tempatLahir) || strlen(tempatLahir) > 30);
-					
-			        do {
-			            printf("Masukkan Tanggal Lahir (format DD-MM-YYYY): ");
-			            scanf(" %[^\n]", tanggalLahir);
-			            getchar();
-			            if (!validateTanggalLahir(tanggalLahir)) {
-			                printf("\n---------------------------------------------------------------------------------------\n");
-							printf("Format Tanggal Lahir tidak valid. Tolong input tanggal yang sesuai (format DD-MM-YYYY).\n");
-							printf("---------------------------------------------------------------------------------------\n\n");
-			            }
-			        } while (!validateTanggalLahir(tanggalLahir));
 
                     do {
-					    printf("Masukkan Jabatan (maks. 50 karakter): ");
-					    scanf(" %[^\n]", jabatan);
-					    getchar();
-					
-					    // Validasi Jabatan
-					    if (strlen(jabatan) > 50) {
-					        printf("\n------------------------------------------------\n");
-					        printf("Jabatan tidak valid. Harus maksimal 50 karakter.\n");
-					        printf("------------------------------------------------\n\n");
-					    }
-					} while (strlen(jabatan) > 50);
+                        printf("Masukkan Nama Lengkap (maks. 30 karakter): ");
+                        scanf(" %[^\n]", namaLengkap);
+                        getchar();
+
+                        // Validasi Nama Lengkap
+                        if (!isAlphaSpace(namaLengkap) || strlen(namaLengkap) > 30) {
+                            printf("\n-----------------------------------------------------------------------------------\n");
+                            printf("Nama Lengkap tidak valid. Harus berisi hanya huruf dan spasi, maksimal 30 karakter.\n");
+                            printf("-----------------------------------------------------------------------------------\n\n");
+                        }
+                    } while (!isAlphaSpace(namaLengkap) || strlen(namaLengkap) > 30);
+
+                    do {
+                        printf("Masukkan Tempat Lahir (maks. 30 karakter): ");
+                        scanf(" %[^\n]", tempatLahir);
+                        getchar();
+
+                        // Validasi Tempat Lahir
+                        if (!isAlphaSpace(tempatLahir) || strlen(tempatLahir) > 30) {
+                            printf("\n-----------------------------------------------------------------------------------\n");
+                            printf("Tempat Lahir tidak valid. Harus berisi hanya huruf dan spasi, maksimal 30 karakter.\n");
+                            printf("-----------------------------------------------------------------------------------\n\n");
+                        }
+                    } while (!isAlphaSpace(tempatLahir) || strlen(tempatLahir) > 30);
+
+                    do {
+                        printf("Masukkan Tanggal Lahir (format DD-MM-YYYY): ");
+                        scanf(" %[^\n]", tanggalLahir);
+                        getchar();
+                        if (!validateTanggalLahir(tanggalLahir)) {
+                            printf("\n---------------------------------------------------------------------------------------\n");
+                            printf("Format Tanggal Lahir tidak valid. Tolong input tanggal yang sesuai (format DD-MM-YYYY).\n");
+                            printf("---------------------------------------------------------------------------------------\n\n");
+                        }
+                    } while (!validateTanggalLahir(tanggalLahir));
+
+                    do {
+                        printf("Masukkan Jabatan (maks. 50 karakter): ");
+                        scanf(" %[^\n]", jabatan);
+                        getchar();
+
+                        // Validasi Jabatan
+                        if (strlen(jabatan) > 50) {
+                            printf("\n------------------------------------------------\n");
+                            printf("Jabatan tidak valid. Harus maksimal 50 karakter.\n");
+                            printf("------------------------------------------------\n\n");
+                        }
+                    } while (strlen(jabatan) > 50);
 
                     insert_back(employeeID, namaLengkap, tempatLahir, tanggalLahir, jabatan);
                     dataCount++;
@@ -385,4 +384,3 @@ int main() {
 
     return 0;
 }
-
