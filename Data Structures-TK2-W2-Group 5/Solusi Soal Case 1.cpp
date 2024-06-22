@@ -54,19 +54,21 @@ int countWords(char str[]) {
 
 int main() {
     char input[1000];
-    char choice[10];
+    char choice[100];
 
-    printf("Selamat datang!\n\n");
+    printf("=======================\n");
+    printf("Program Reverse Kalimat\n");
+    printf("=======================\n");
 
     do {
         do {
-            printf("Masukkan kalimat yang ingin dibalik (minimal 5 kata): ");
+            printf("\nMasukkan kalimat yang ingin dibalik (minimal 5 kata): ");
             scanf(" %[^\n]", input);
-            printf("-----------------------------------------------\n");
+            printf("\n-----------------------------------------------\n");
             int wordCount = countWords(input);
             if (wordCount < 5) {
-                printf("Kalimat harus terdiri dari minimal 5 kata. Silakan coba lagi.\n");
-                printf("-----------------------------------------------\n");
+                printf("Invalid. Silakan coba lagi sesuai ketentuan.\n");
+                printf("-----------------------------------------------\n\n");
             } else {
                 break;
             }
@@ -74,17 +76,24 @@ int main() {
 
         reverse(input);
         printf("Kalimat yang dibalik: %s\n", input);
-        printf("-----------------------------------------------\n");
+        printf("-----------------------------------------------\n\n");
 
-        printf("Apakah Anda ingin mencoba lagi? (yes/no): ");
-        scanf("%s", choice);
-        printf("-----------------------------------------------\n");
-        
-        getchar();
+        do {
+            printf("Apakah Anda ingin mencoba lagi? (yes/no): ");
+            scanf(" %[^\n]", choice);
+            printf("\n-----------------------------------------------\n");
+            
+            for (int i = 0; choice[i]; i++) {
+                choice[i] = tolower(choice[i]);
+            }
 
-        for (int i = 0; choice[i]; i++) {
-            choice[i] = tolower(choice[i]);
-        }
+            if (strcmp(choice, "yes") != 0 && strcmp(choice, "no") != 0) {
+                printf("Invalid. Masukkan 'yes' atau 'no'.\n");
+                printf("-----------------------------------------------\n\n");
+            } else {
+                break;
+            }
+        } while (1);
 
     } while (strcmp(choice, "yes") == 0);
 
