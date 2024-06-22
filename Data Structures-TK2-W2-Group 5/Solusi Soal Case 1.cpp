@@ -43,7 +43,6 @@ void reverse(char str[]) {
 int countWords(char str[]) {
     int count = 0;
     int i = 0;
-    scanf("%[^\n]s", str);
     for (i = 0; str[i] != '\0'; i++) {
         if (str[i] == ' ' && str[i + 1] != ' ') {
             count++;
@@ -63,12 +62,12 @@ int main() {
     do {
         do {
             printf("\nMasukkan kalimat yang ingin dibalik (minimal 5 kata): ");
-            scanf(" %[^\n]", input);
+            scanf(" %[^\n]", input); getchar();
             printf("\n-----------------------------------------------\n");
             int wordCount = countWords(input);
             if (wordCount < 5) {
                 printf("Invalid. Silakan coba lagi sesuai ketentuan.\n");
-                printf("-----------------------------------------------\n\n");
+                printf("-----------------------------------------------\n");
             } else {
                 break;
             }
@@ -80,7 +79,7 @@ int main() {
 
         do {
             printf("Apakah Anda ingin mencoba lagi? (yes/no): ");
-            scanf(" %[^\n]", choice);
+            scanf(" %[^\n]", choice); getchar();
             printf("\n-----------------------------------------------\n");
             
             for (int i = 0; choice[i]; i++) {
