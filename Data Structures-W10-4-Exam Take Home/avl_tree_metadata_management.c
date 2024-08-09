@@ -240,9 +240,18 @@ void printMetadata(Metadata data) {
 
 // Fungsi untuk mencetak semua metadata dalam AVL Tree
 void printAllMetadata(Node* root) {
-    if (root != NULL) {
+    if (root == NULL) {
+        // Jika pohon kosong
+        return;
+    }
+    
+    if (root->left != NULL) {
         printAllMetadata(root->left);  // Cetak subtree kiri
-        printMetadata(root->data);  // Cetak data node saat ini
+    }
+    
+    printMetadata(root->data);  // Cetak data node saat ini
+    
+    if (root->right != NULL) {
         printAllMetadata(root->right);  // Cetak subtree kanan
     }
 }
@@ -263,8 +272,12 @@ void tampilkanMenu() {
 // Fungsi untuk mendapatkan input string
 void inputString(const char* prompt, char* buffer, int size) {
     printf("%s", prompt);  // Tampilkan prompt
-    fgets(buffer, size, stdin);  // Ambil input dari pengguna
-    buffer[strcspn(buffer, "\n")] = 0;  // Menghapus newline di akhir input
+    
+    // Membaca input string hingga newline
+    scanf(" %[^\n]", buffer);
+    
+    // Menghapus newline yang tersisa jika ada
+    getchar();
 }
 
 void clearScreen() {
@@ -278,19 +291,38 @@ void clearScreen() {
 // Fungsi utama
 int main() {
     Node *root = NULL;  // Root dari AVL Tree
-    int pilihan;  // Pilihan menu
+    int choice;  // Pilihan menu
     char filename[100];  // Nama file untuk operasi
     Metadata data;  // Data metadata file
+	char strChoice[10];  // Buffer untuk menyimpan input pilihan menu
 
     do {
         clearScreen();  // Bersihkan layar
         tampilkanMenu();  // Tampilkan menu
-        printf("Masukkan pilihan: ");
-        scanf("%d", &pilihan);  // Ambil pilihan dari pengguna
-        getchar();  // Menghapus newline dari buffer
+        
+        do {
+            printf("Masukkan pilihan: ");
+            scanf(" %[^\n]", strChoice);
+            getchar();  // Menghapus newline di akhir input
+            
+            // Validasi panjang string
+            if (strlen(strChoice) != 1) {
+                printf("\n------------------------------------\n");
+                printf("Pilihan tidak valid. Masukkan angka.\n");
+                printf("------------------------------------\n\n");
+            } else {
+                choice = atoi(strChoice); // Konversi string ke integer
+                if (choice < 1 || choice > 5) {
+                    printf("\n--------------------------------------\n");
+                    printf("Pilihan tidak valid. Harus antara 1-5.\n");
+                    printf("--------------------------------------\n\n");
+                }
+            }
+        } while (strlen(strChoice) != 1 || (choice < 1 || choice > 5));  // Validasi input menu
+        
         printf("--------------------------\n");
 
-        switch (pilihan) {
+        switch (choice) {
             case 1:
                 // Tambah Metadata File
                 inputString("Masukkan nama file: ", data.filename, sizeof(data.filename));
@@ -324,8 +356,12 @@ int main() {
                 break;
             case 4:
                 // Tampilkan Semua Metadata
-                printf("Menampilkan semua metadata file:\n\n");
-                printAllMetadata(root);  // Cetak semua metadata di AVL Tree
+			    if (root == NULL) {
+			        printf("Tidak ada metadata file yang tersedia.\n");
+			    } else {
+			        printf("Menampilkan semua metadata file:\n\n");
+			        printAllMetadata(root);  // Cetak semua metadata di AVL Tree
+			    }
                 break;
             case 5:
                 // Keluar dari program
@@ -336,12 +372,11 @@ int main() {
                 break;
         }
         
-        if (pilihan != 5) {
+        if (choice != 5) {
             printf("\nTekan Enter untuk melanjutkan...");
             while(getchar() != '\n');  // Tunggu input Enter untuk melanjutkan
         }
-    } while (pilihan != 5);  // Ulangi hingga pengguna memilih keluar
+    } while (choice != 5);  // Ulangi hingga pengguna memilih keluar
 
     return 0;  // Keluar dari program
 }
-
