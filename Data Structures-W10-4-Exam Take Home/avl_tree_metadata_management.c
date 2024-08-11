@@ -356,12 +356,12 @@ int main() {
                 break;
             case 4:
                 // Tampilkan Semua Metadata
-			    if (root == NULL) {
-			        printf("Tidak ada metadata file yang tersedia.\n");
-			    } else {
-			        printf("Menampilkan semua metadata file:\n\n");
-			        printAllMetadata(root);  // Cetak semua metadata di AVL Tree
-			    }
+		if (root == NULL) {
+			printf("Tidak ada metadata file yang tersedia.\n");
+		} else {
+			printf("Menampilkan semua metadata file:\n\n");
+			printAllMetadata(root);  // Cetak semua metadata di AVL Tree
+		}
                 break;
             case 5:
                 // Keluar dari program
